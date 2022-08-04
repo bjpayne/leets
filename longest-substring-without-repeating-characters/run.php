@@ -47,6 +47,7 @@ class Solution {
 
 $solution = new Solution();
 
+echo $solution->lengthOfLongestSubstring('umvejcuuk').PHP_EOL; // 6
 echo $solution->lengthOfLongestSubstring('bbbbb').PHP_EOL; // 1
 echo $solution->lengthOfLongestSubstring('abcabcbb').PHP_EOL; // 3
 echo $solution->lengthOfLongestSubstring('jxdlnaaij').PHP_EOL; // 6
