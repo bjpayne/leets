@@ -1,10 +1,12 @@
 <?php
 
+namespace App\AddTwoNumbers;
+
 class Solution {
 
     /**
-     * @param ListNode $l1
-     * @param ListNode $l2
+     * @param ListNode $list1
+     * @param ListNode $list2
      * @return ListNode
      */
     function addTwoNumbers($list1, $list2) {
@@ -46,46 +48,3 @@ class Solution {
         return $this->buildLinkedList($previous_node, $values);
     }
 }
-
-/**
- * Testing code...solution is above
- *
- * Example test cases:
- * [2,4,3] [5,6,4]
- * [0] [0]
- * [9,9,9,9,9,9,9] [9,9,9,9]
- */
-
-/**
- * Definition for a singly-linked list.
- */
-class ListNode {
-    public $val = 0;
-    public $next = null;
-    function __construct($val = 0, $next = null) {
-        $this->val = $val;
-        $this->next = $next;
-    }
-}
-
-$solution = new Solution();
-
-$list1_input = [9,9,9,9,9,9,9];
-$list2_input = [9,9,9,9];
-
-$list1 = $solution->buildLinkedList(new ListNode(array_pop($list1_input)), $list1_input);
-$list2 = $solution->buildLinkedList(new ListNode(array_pop($list2_input)), $list2_input);
-
-$output_list = $solution->addTwoNumbers($list1, $list2);
-
-$output_list_values = [];
-
-while (! empty($output_list->next)) {
-    $output_list_values[] = $output_list->val;
-
-    $output_list = $output_list->next;
-}
-
-$output_list_values[] = $output_list->val;
-
-echo '['.implode(',', $output_list_values).']'.PHP_EOL;
