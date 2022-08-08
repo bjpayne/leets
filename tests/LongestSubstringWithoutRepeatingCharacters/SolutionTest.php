@@ -1,6 +1,6 @@
 <?php
 
-namespace tests\LongestSubstringWithoutRepeatingCharacters;
+namespace Tests\LongestSubstringWithoutRepeatingCharacters;
 
 use App\LongestSubstringWithoutRepeatingCharacters\Solution;
 use PHPUnit\Framework\TestCase;
