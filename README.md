@@ -4,6 +4,8 @@ Leet code solutions I've come up with. Can be used for study or for reference. P
 
 ### Solutions
 1. [Two Sum](app/TwoSum/Solution.php)
+2. [Add Two Numbers](app/AddTwoNumbers/Solution.php)
+3. [Longest Substring Without Repeating Characters](app/LongestSubstringWithoutRepeatingCharacters/Solution.php)
 
 ### Installation
 
