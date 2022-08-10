@@ -9,32 +9,51 @@ class Solution {
      * @return String
      */
     function longestPalindrome($s) {
+        $result = '';
+
         $chars = str_split($s);
 
-        $chars_count = count($chars);
+        if (count($chars) == 1) {
+            return $chars[0];
+        }
 
-        $longest_palindrome = '';
+        if (count($chars) == 2) {
+            if ($chars[0] == $chars[1]) {
+                return $s;
+            }
 
-        // Go through all characters
-        for ($i = 0; $i < $chars_count; $i++) {
-            $substring = '';
+            return $chars[0];
+        }
 
-            // Go through remaining characters
-            for ($j = $i; $j < $chars_count; $j++) {
-                $substring .= $chars[$j];
+        // Entire string is a palindrome
+        if ($s == implode('', array_reverse($chars))) {
+            return $s;
+        }
 
-                $is_palindrome = $substring == implode(array_reverse(str_split($substring)));
+        $char_count = count($chars);
 
-                if ($is_palindrome) {
-                    $is_longest_palindrome = strlen($substring) > strlen($longest_palindrome);
+        for ($i = 0; $i < $char_count; $i++) {
+            $left = $right = $i;
 
-                    if ($is_longest_palindrome) {
-                        $longest_palindrome = $substring;
-                    }
+            $is_even = $char_count % 2 === 0;
+
+            if ($is_even) {
+                $right = $i + 1;
+            }
+
+            while ($left >= 0 && $right < $char_count && $chars[$left] == $chars[$right]) {
+                $length = ($right - $left) + 1;
+
+                if ($length > strlen($result)) {
+                    $result = implode('', array_slice($chars, $left, $length));
                 }
+
+                $left = $left - 1;
+
+                $right = $right + 1;
             }
         }
 
-        return $longest_palindrome;
+        return $result;
     }
 }
