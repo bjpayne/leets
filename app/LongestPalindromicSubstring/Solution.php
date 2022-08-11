@@ -11,49 +11,43 @@ class Solution {
     function longestPalindrome($s) {
         $result = '';
 
+        $result_count = 0;
+
         $chars = str_split($s);
-
-        if (count($chars) == 1) {
-            return $chars[0];
-        }
-
-        if (count($chars) == 2) {
-            if ($chars[0] == $chars[1]) {
-                return $s;
-            }
-
-            return $chars[0];
-        }
-
-        // Entire string is a palindrome
-        if ($s == implode('', array_reverse($chars))) {
-            return $s;
-        }
 
         $char_count = count($chars);
 
         for ($i = 0; $i < $char_count; $i++) {
-            $left = $right = $i;
+            // Odd length check
+            $left = $i;
+            $right = $i;
 
-            $is_even = $char_count % 2 === 0;
+            $this->rotate($left, $right, $result_count, $result, $chars, $s);
 
-            if ($is_even) {
-                $right = $i + 1;
-            }
+            // Even length check
+            $left = $i;
+            $right = $i + 1;
 
-            while ($left >= 0 && $right < $char_count && $chars[$left] == $chars[$right]) {
-                $length = ($right - $left) + 1;
-
-                if ($length > strlen($result)) {
-                    $result = implode('', array_slice($chars, $left, $length));
-                }
-
-                $left = $left - 1;
-
-                $right = $right + 1;
-            }
+            $this->rotate($left, $right, $result_count, $result, $chars, $s);
         }
 
         return $result;
+    }
+
+    function rotate(&$left, &$right, &$result_count, &$result, $chars, $s)
+    {
+        while ($left >= 0 && $right < strlen($s) && $chars[$left] == $chars[$right]) {
+            $window_size = ($right - $left + 1);
+
+            if ($window_size > $result_count) {
+                $result = implode('', array_slice($chars, $left, $window_size));
+
+                $result_count = $window_size;
+            }
+
+            $left = $left - 1;
+
+            $right = $right + 1;
+        }
     }
 }
