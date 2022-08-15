@@ -14,44 +14,37 @@ class Solution {
             return $s;
         }
 
+        $strlen = strlen($s);
+
         $result = '';
 
-        $row = $column = 1;
+        for ($row = 0; $row < $numRows; $row ++) {
+            $next = 0;
 
-        $rows = [];
+            for ($i = 0; $i < $strlen; $i++) {
+                if ($i == 0) {
+                    $result .= $s[$row];
+                }
 
-        $direction = 'down';
+                $next = ($next + (($numRows - 1) * 2));
 
-        for ($i = 0; $i < strlen($s); $i++) {
-            if (empty($rows[$row])) {
-                $rows[$row] = [];
+                $offset = $next + $row;
+
+                // Not first or last row
+                if ($row != 0 && $row != ($numRows - 1)) {
+                    $adjacent = $offset - ($row * 2);
+
+                    if (! empty($s[$adjacent])) {
+                        $result .= $s[$adjacent];
+                    }
+                }
+
+                if (empty($s[$offset])) {
+                    break;
+                }
+
+                $result .= $s[$offset];
             }
-
-            $rows[$row][$column] = $s[$i];
-
-            if ($row == $numRows) {
-                $direction = 'up';
-            }
-
-            if ($row == 1 && $direction == 'up') {
-                $direction = 'down';
-
-                $row = 1;
-            }
-
-            if ($direction == 'down') {
-                $row = $row + 1;
-            }
-
-            if ($direction == 'up') {
-                $row = $row - 1;
-
-                $column = $column + 1;
-            }
-        }
-
-        foreach ($rows as $row) {
-            $result .= implode($row);
         }
 
         return $result;
