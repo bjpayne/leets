@@ -18,32 +18,22 @@ class Solution {
 
         $result = '';
 
+        $increment = ($numRows - 1) * 2;
+
         for ($row = 0; $row < $numRows; $row ++) {
-            $next = 0;
-
-            for ($i = 0; $i < $strlen; $i++) {
-                if ($i == 0) {
-                    $result .= $s[$row];
-                }
-
-                $next = ($next + (($numRows - 1) * 2));
-
-                $offset = $next + $row;
-
+            for ($i = $row; $i < $strlen; $i = $i + $increment) {
                 // Not first or last row
                 if ($row != 0 && $row != ($numRows - 1)) {
-                    $adjacent = $offset - ($row * 2);
+                    $adjacent = $i - ($row * 2);
 
-                    if (! empty($s[$adjacent])) {
+                    if ($adjacent >= 0 && ! empty($s[$adjacent])) {
                         $result .= $s[$adjacent];
                     }
                 }
 
-                if (empty($s[$offset])) {
-                    break;
+                if (! empty($s[$i])) {
+                    $result .= $s[$i];
                 }
-
-                $result .= $s[$offset];
             }
         }
 
