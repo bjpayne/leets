@@ -8,6 +8,7 @@ Leet code solutions I've come up with. Can be used for study or for reference. P
 3. [Longest Substring Without Repeating Characters](app/LongestSubstringWithoutRepeatingCharacters)
 4. [Median Of Two Sorted Arrays](app/MedianOfTwoSortedArrays)
 5. [Longest Palindromic Substring](app/LongestPalindromicSubstring)
+6. [Zigzag Conversion](app/ZigZagConversion)
 
 ### Installation
 
