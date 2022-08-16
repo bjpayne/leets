@@ -9,11 +9,11 @@ class Solution {
      * @return Integer
      */
     function reverse($x) {
-        $min = (int) bcpow('-2', '31');
+        $min = (int) bcpow('-2', '31'); // -2147483647
         $min_shifted = intdiv($min, 10);
-        $min_last_digit = abs((int) bcmod((string) $min, 10));
+        $min_last_digit = (int) bcmod((string) $min, 10);
 
-        $max = (int) bcsub(bcpow('2', '31'), 1);
+        $max = (int) bcsub(bcpow('2', '31'), 1); //
         $max_shifted = intdiv($max, 10);
         $max_last_digit = (int) bcmod((string) $max, 10);
 

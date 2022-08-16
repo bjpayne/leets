@@ -27,4 +27,11 @@ class SolutionTest extends TestCase
 
         $this->assertEquals(21, $solution->reverse(120));
     }
+
+    public function test4()
+    {
+        $solution = new Solution();
+
+        $this->assertEquals(-2147483641, $solution->reverse(-1463847412));
+    }
 }
