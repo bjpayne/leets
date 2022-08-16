@@ -22,17 +22,13 @@ class Solution {
 
         for ($row = 0; $row < $numRows; $row ++) {
             for ($i = $row; $i < $strlen; $i = $i + $increment) {
-                // Not first or last row
-                if ($row != 0 && $row != ($numRows - 1)) {
-                    $adjacent = $i - ($row * 2);
+                $result .= $s[$i];
 
-                    if ($adjacent >= 0 && ! empty($s[$adjacent])) {
-                        $result .= $s[$adjacent];
-                    }
-                }
+                // On the diagonals move to the next character, than back twice the number of rows
+                $diagonal = ($i + $increment) - (2 * $row);
 
-                if (! empty($s[$i])) {
-                    $result .= $s[$i];
+                if ($row > 0 && $row < ($numRows - 1) && $diagonal < $strlen) {
+                    $result .= $s[$diagonal];
                 }
             }
         }
