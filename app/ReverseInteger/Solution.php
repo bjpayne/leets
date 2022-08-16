@@ -9,20 +9,37 @@ class Solution {
      * @return Integer
      */
     function reverse($x) {
-        // cast to a string and remove any non digit character
-        $_x = preg_replace('/[^0-9]/', '', (string) $x);
+        $min = (int) bcpow('-2', '31');
+        $min_shifted = intdiv($min, 10);
+        $min_last_digit = abs((int) bcmod((string) $min, 10));
 
-        // reverse the string
-        $_x = strrev($_x);
+        $max = (int) bcsub(bcpow('2', '31'), 1);
+        $max_shifted = intdiv($max, 10);
+        $max_last_digit = (int) bcmod((string) $max, 10);
 
-        // multiply number by 1 to remove any leading zeros (e.g. 120 -> 021)
-        $_x = bcmul($_x, '1');
+        $result = 0;
 
-        // multiply by negative 1, for negative numbers
-        if ($x < 0) {
-            $_x = bcmul($_x, '-1');
+        while (abs($x) > 0) {
+            // shift digit off the end
+            $digit = (int) bcmod((string) $x, 10);
+
+            // shift x to the left
+            $x = intdiv($x, 10);
+
+            // Check if over max, or is equal to max and last digit is greater than next digit
+            if ($result > $max_shifted || ($result == $max_shifted && $digit >= $max_last_digit)) {
+                return 0;
+            }
+
+            // Check if under min, or is equal to min and last digit is greater than next digit
+            if ($result < $min_shifted || ($result == $min_shifted && $digit <= $min_last_digit)) {
+                return 0;
+            }
+
+            // update result
+            $result = ($result * 10) + $digit;
         }
 
-        return $_x;
+        return $result;
     }
 }
