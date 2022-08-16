@@ -21,3 +21,6 @@ $ composer install
 ```bash
 $ ./vendor/bin/phpunit tests
 ```
+
+### Other resources
+[NeetCode.io](https://needcode.io)
