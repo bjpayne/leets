@@ -10,6 +10,7 @@ Leet code solutions I've come up with. Can be used for study or for reference. P
 5. [Longest Palindromic Substring](app/LongestPalindromicSubstring)
 6. [Zigzag Conversion](app/ZigZagConversion)
 7. [Reverse Integer](app/ReverseInteger)
+8. [Contains Duplicate](app/ContainsDuplicate)
 
 ### Installation
 
