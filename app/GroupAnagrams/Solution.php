@@ -6,23 +6,33 @@ class Solution
 {
     function groupAnagrams($strs)
     {
-        $sorted_map = [];
+        $result = [];
 
         foreach ($strs as $str) {
-            $str_chars = str_split($str);
+            $count = array_combine(range('a', 'z'), array_pad([], 26, 0));
 
-            sort($str_chars);
+            for ($i = 0; $i < strlen($str); $i++) {
+                $key = $str[$i];
 
-            $str_key = implode('', $str_chars);
-
-            if (empty($sorted_map[$str_key])) {
-                $sorted_map[$str_key] = [];
+                $count[$key] = $count[$key] + 1;
             }
 
-            $sorted_map[$str_key][] = $str;
+            $result_key = '';
+
+            $count = array_filter($count);
+
+            foreach ($count as $char => $number_of_chars) {
+                $result_key .= str_repeat($char, $number_of_chars);
+            }
+
+            if (empty($result[$result_key])) {
+                $result[$result_key] = [];
+            }
+
+            $result[$result_key][] = $str;
         }
 
-        $result = array_values($sorted_map);
+        $result = array_values($result);
 
         return $result;
     }
