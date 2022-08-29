@@ -1,6 +1,6 @@
 # Top K Frequent Elements
 
-Give an integer array `nums` and an integer k, return _the_ `k` most _frequent elements_. You may return the answer in **any order**
+Give an integer array `nums` and an integer k, return _the_ `k` most _frequent elements_. You may return the answer in **any order**.
 
 **Example 1:**
 <pre>
