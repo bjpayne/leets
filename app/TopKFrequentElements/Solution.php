@@ -11,22 +11,34 @@ class Solution
      */
     function topKFrequent($nums, $k)
     {
-        $map = [];
+        $counts = [];
+
+        $frequency = array_pad([], count($nums) + 1, []);
+
+        $result = [];
 
         foreach ($nums as $num) {
-            if (empty($map[$num])) {
-                $map[$num] = 0;
+            if (empty($counts[$num])) {
+                $counts[$num] = 0;
             }
 
-            $map[$num] = $map[$num] + 1;
+            $counts[$num] = $counts[$num] + 1;
         }
 
-        arsort($map, SORT_NUMERIC);
+        foreach ($counts as $num => $count) {
+            $frequency[$count][] = $num;
+        }
 
-        $map = array_keys($map);
+        for ($i = count($frequency) - 1; $i > 0; $i--) {
+            for ($j = 0; $j < count($frequency[$i]); $j++) {
+                $result[] = $frequency[$i][$j];
+            }
 
-        $map = array_values(array_slice($map, 0, $k));
+            if (count($result) == $k) {
+                break;
+            }
+        }
 
-        return $map;
+        return $result;
     }
 }
