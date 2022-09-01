@@ -10,20 +10,26 @@ class Solution
      */
     function productExceptSelf(array $nums): array
     {
-        $results = [];
+        $prefixProduct = [1];
 
-        for ($i = 0; $i < count($nums); $i++) {
-            $result = 1;
+        $suffixProduct = [];
 
-            for ($j = 0; $j < count($nums); $j++) {
-                if ($i !== $j) {
-                    $result = $result * $nums[$j];
-                }
-            }
+        $product = [];
 
-            $results[] = $result;
+        for ($i = 1; $i < count($nums); $i++) {
+            $prefixProduct[$i] = $nums[$i - 1] * $prefixProduct[$i - 1];
         }
 
-        return $results;
+        $suffixProduct[count($nums) - 1] = 1;
+
+        for ($i = count($nums) - 2; $i >= 0; $i--) {
+            $suffixProduct[$i] = $nums[$i + 1] * $suffixProduct[$i + 1];
+        }
+
+        for ($i = 0; $i < count($nums); $i++) {
+            $product[$i] = $prefixProduct[$i] * $suffixProduct[$i];
+        }
+
+        return $product;
     }
 }
