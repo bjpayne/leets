@@ -8,7 +8,7 @@ class Solution
      * @param Integer[] $nums
      * @return Integer[]
      */
-    function productExceptSelf($nums): array
+    function productExceptSelf(array $nums): array
     {
         $results = [];
 
