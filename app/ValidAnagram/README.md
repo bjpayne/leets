@@ -1,4 +1,5 @@
-# Valid Anagram
+# 242. Valid Anagram
+[https://leetcode.com/problems/valid-anagram/](https://leetcode.com/problems/valid-anagram/)
 
 Given two string `s` and `t`, return `true` <em>if</em> `t` <em>is an anagram of `s`, and `false` otherwise</em>
 
