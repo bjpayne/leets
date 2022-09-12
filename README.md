@@ -15,6 +15,7 @@ Leet code solutions I've come up with. Can be used for study or for reference. P
 10. [Group Anagrams](app/GroupAnagrams)
 11. [Top K Frequent Elements](app/TopKFrequentElements)
 12. [Product of Array Except Self](app/ProductOfArrayExceptSelf)
+13. [Valid Sudoku](app/ValidSudoku)
 
 ### Installation
 
