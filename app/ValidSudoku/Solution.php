@@ -9,8 +9,6 @@ class Solution
      * @return Boolean
      */
     function isValidSudoku($board) {
-        $board = json_decode($board);
-
         // rows
         for ($i = 0; $i < 9; $i++) {
             $row_values = [];
@@ -39,14 +37,31 @@ class Solution
             }
         }
 
+        //squares
+        $square_values = [];
+
+        for ($i = 0; $i < 9; $i++) {
+            $starting_row = 3 * intdiv($i,3);
+
+            $starting_column = 3 * ($i % 3);
+
+            for ($j = $starting_row; $j < ($starting_row + 3); $j++) {
+                for ($k = $starting_column; $k < ($starting_column + 3); $k++) {
+                    $square_key = $board[$j][$k];
+
+                    if (! empty($square_values[$square_key])) {
+                        return false;
+                    }
+
+                    if ($square_key !== '.') {
+                        $square_values[$square_key] = true;
+                    }
+                }
+            }
+
+            $square_values = [];
+        }
+
         return true;
     }
 }
-
-/**
- * [
- *  [5, 3, .]
- *  [6, ., .]
- *  [., 9, 8]
- * ]
- */
